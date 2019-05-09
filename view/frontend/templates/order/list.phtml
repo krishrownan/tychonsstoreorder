@@ -1,0 +1,42 @@
+<?php 
+
+$storeproduct = $block->getStoreProduct();
+
+?>
+
+<div class="storeorder-list">
+	<h3 class="storeorder-header">Store Order</h3>
+	<p class="stor-info">
+	This order will automatically process at 3:00 PM on Friday. This order will be shipped to the default store address. Please contact the store manager for questions about the store order schedule.
+	</p>
+	<table class="storeorder-table">
+	  <tr>
+	    <th>Item</th>
+	    <th>Price</th>
+	    <th>Qty</th>
+	    <th>Price</th>
+	    <th>Total</th>
+	    <th>Action</th>
+	  </tr>
+	   <?php foreach ($storeproduct as $key =>$product) : ?>
+
+	  <tr>
+	    <td>
+	    	<div class="store-img"><img class="store-src" src="<?php echo  $product['product_image']?>"></div>
+	    	<div class="pro-det">
+	    		<p><?php echo $product['product_name'];?></p>
+	    		<p><?php echo $product['sku'];?></p>
+	    		<p><?php echo $product['desc'];?></p>
+	    	</div> 
+	    </td>
+	    <td><?php echo $product['product_price'];?></td>
+	    <td><?php echo $product['qty'];?></td>
+	    <td><?php echo $product['total_price'];?></td>
+	    <td><?php echo $product['owner'];?></td>
+	    <td><span class="add-to-rush"><a href="">Add To Rush Order</span></td>
+	  </tr>
+
+	  <?php endforeach;?>
+
+	</table>
+</div>

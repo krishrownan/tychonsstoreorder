@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="catalogsearch.product.addto">
+                <block class="Tychons\AddToStoreOrder\Block\Product\ListProduct"
+                       ifconfig="addtostoreorder/general/enable_search"
+                       name="product.addtostoreorder.search"
+                       before="-" template="Tychons_AddToStoreOrder::addtostoreorder-list.phtml"/>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

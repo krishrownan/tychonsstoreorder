@@ -1,0 +1,27 @@
+.custom.link.storeorder{
+    float: right;
+}
+
+.storeorder-custom .text{
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    width: 1px;
+}
+
+.minicart-wrapper span.text {
+    position: unset !important;
+}
+
+.minicart-wrapper:before, .minicart-wrapper:after,.minicart-wrapper .action.showcart:before{
+
+    content: none !important;
+}
+
+a.storeorder-custom {
+    text-decoration: none;
+    cursor: pointer;
+}

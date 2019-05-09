@@ -1,0 +1,22 @@
+{
+    "name": "tychons/module-storeorder",
+    "description": "This plugin is used to manage store order at scheduled time",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Tychons\\Storeorder\\": ""
+        }
+    }
+}

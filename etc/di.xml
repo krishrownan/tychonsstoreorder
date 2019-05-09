@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Tychons\Storeorder\Api\SchedulerRepositoryInterface" type="Tychons\Storeorder\Model\SchedulerRepository"/>
+	<preference for="Tychons\Storeorder\Api\Data\SchedulerInterface" type="Tychons\Storeorder\Model\Data\Scheduler"/>
+	<preference for="Tychons\Storeorder\Api\Data\SchedulerSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+</config>

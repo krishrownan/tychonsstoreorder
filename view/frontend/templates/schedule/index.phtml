@@ -1,0 +1,83 @@
+<div class="store-schedule">
+	<p class="sche-content">	
+	Please use the following form to manage the store order processing time. The order will be submitted at the time and on the days specified.
+
+	<?php 
+
+	$schedules = $this->getSchedules();
+
+
+	$days_week = unserialize($schedules['days_week']); 
+
+	$time = $schedules['time'];
+
+	?>
+	</p>
+
+	<form action="" method="POST" name="sch_action">
+    <div class="table-wrapper storescheduler">
+    <table id="storescheduler-table" class="data table table-storescheduler">
+        <caption class="table-caption"><?= /* @escapeNotVerified */ __('Store Order Schedule') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col weekdays"><?= /* @escapeNotVerified */ __('Days of the Week') ?></th>
+            <th scope="col" class="col time"><?= /* @escapeNotVerified */ __('Time (EST)') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col monday">
+                	<input type="checkbox" name="weekday[]" value="monday" class="checkbox" <?php if (in_array("monday",$days_week)):?> checked <?php endif;?> >
+                	<label for="monday" class="label"><span>Monday</span></label>
+                </td>
+                <td class="col time">
+                	<input type="time" name="est_time" class="time" <?php if ($time):?> value = "<?php echo $time; ?>"<?php endif;?> >
+                </td>
+
+            </tr>
+            <tr>
+                <td class="col tuesday">
+                	<input type="checkbox" name="weekday[]" value="tuesday" class="checkbox" <?php if (in_array("tuesday",$days_week)):?> checked <?php endif;?> >
+                	<label for="tuesday" class="label"><span>Tuesday</span></label>
+                </td>
+            </tr>
+            <tr>
+            	<td class="col wednesday">
+                	<input type="checkbox" name="weekday[]" value="wednesday" class="checkbox" <?php if (in_array("wednesday",$days_week)):?> checked <?php endif;?> >
+                	<label for="wednesday" class="label"><span>Wednesday</span></label>
+                </td>
+            </tr>
+            <tr>
+            	<td class="col thursday">
+                	<input type="checkbox" name="weekday[]" value="thursday" class="checkbox" <?php if (in_array("thursday",$days_week)):?> checked <?php endif;?> >
+                	<label for="thursday" class="label"><span>Thursday</span></label>
+                </td>
+            </tr>
+            <tr>
+            	<td class="col friday">
+                	<input type="checkbox" name="weekday[]" value="friday" class="checkbox" <?php if (in_array("friday",$days_week)):?> checked <?php endif;?> >
+                	<label for="friday" class="label"><span>Friday</span></label>
+                </td>
+            </tr>
+            <tr>
+            	<td class="col saturday">
+                	<input type="checkbox" name="weekday[]" value="saturday" class="checkbox" <?php if (in_array("saturday",$days_week)):?> checked <?php endif;?> >
+                	<label for="saturday" class="label"><span>Saturday</span></label>
+                </td>
+            </tr>
+            <tr>
+            	<td class="col sunday">
+                	<input type="checkbox" name="weekday[]" value="sunday" class="checkbox" <?php if (in_array("sunday",$days_week)):?> checked <?php endif;?> >
+                	<label for="sunday" class="label"><span>Sunday</span></label>
+                </td>
+            </tr>
+        </tbody>
+    </table><br>
+	<div class="actions-toolbar">
+		<div class="primary">
+			<button type="submit" class="action submit primary" title="Schedule Submit"><span>Change</span></button>
+		</div>
+	</div>
+</form>
+</div>
+</div>

@@ -1,0 +1,378 @@
+<?php
+
+$productcollection = $block->getCollection();
+
+$count = $productcollection->getSize();
+
+$currency = $block->getCurrentCurrencySymbol();
+
+?>
+<div class="custom link storeorder" data-bind="scope: 'storeorder'">
+    <a href="/magento23/storeorder/" class="storeorder-custom">
+        <span class="text add-to-store-order">Store Order</span>
+        <?php if($count>0)  : ?>
+            <span class="storeorder-counter-number">
+                <?php echo $count; ?>
+            </span>
+        <?php endif; ?>
+    </a>
+</div>
+<div class="store-order-dialog" id="store-dialog">
+    <div class="storeorder-items-wrapper">
+        <button type="button" id="btn-store-close" class="store-action store-close" title="Close">
+            <span data-bind="i18n: 'Close'">Close</span>
+        </button>
+        <?php if($count>0)  : ?>
+        <div class="storeorder-qty-price-blk">
+            <div class="storeorder-items-total">
+                <?php if($count>0)  : ?>
+                    <span class="storeorder-count">
+                        <?php echo $count; ?>
+                    </span>
+                <?php endif; ?>
+                <span class="storeorder-itm-tlt">Items in Store Order</span>
+            </div>
+            <div class="storeorder-subtotal">
+                <span class="label"><span>Store Order Subtotal</span></span>
+                <div class="storeorder-amount storeorder-price-container">
+                    <span class="storeorder-price-wrapper"><span class="storeorder-price">$189.00</span></span>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div id="storecart-items-wrapper">
+            <ol id="storeorder-cart" class="storeorder-items">
+            <?php if($count>0)  : ?>
+               <?php foreach ($productcollection as $key =>$product) : ?>
+                <li class="store-product-item" data-role="store-product-item">
+                    <div class="store-product">
+                        <a tabindex="-1" class="store-product-item-photo" href="<?php echo $product->getProductUrl(); ?>" 
+                            title="<?php echo $product->getProductName(); ?>">
+                            <span class="store-product-image-container" >
+                            <span class="store-product-image-wrapper">
+                            <img class="store-product-image-photo" src="<?php echo $product->getProductImage(); ?>" 
+                            alt="<?php echo $product->getProductName(); ?>">
+                            </span>
+                            </span>
+                        </a>
+                        <div class="store-product-item-details">
+                            <strong class="store-product-item-name">
+                            <a href="<?php echo $product->getProductUrl(); ?>"><?php echo $product->getProductName(); ?></a>
+                            </strong>
+                                <div class="store-product-item-pricing">
+                                    <div class="store-price-container">
+                                        <span class="store-price-wrapper">
+                                            <span class="store-price-excluding-tax">
+                                            <span class="store-minicart-price">
+                                            <span class="store-price"><?php echo $product->getProductPrice(); ?></span>        
+                                            </span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="store-details-qty store-qty">
+                                        <label class="label">Qty</label>
+                                        <input type="number" size="4" value="<?php echo $product->getQty(); ?>" class="store-item-qty store-cart-item-qty" id="">
+                                        <!-- <button class="store-update-cart-item" id="store-update-cart-item-40" data-cart-item="40" title="Update">
+                                        <span>Update</span>
+                                        </button> -->
+                                    </div>
+                                </div>
+                            <div class="store-product actions">
+                                <div class="store-primary">
+                                    <a class="store-action store-edit" href="<?php echo $product->getProductUrl(); ?>" title="Edit item">
+                                    <span>Edit</span>
+                                    </a>
+                                </div>
+                                <div class="store-secondary" data-mage-init='{"popupjs": {}}'>
+                                    <a href="#" id="remove-product-<?php echo $product->getProductId(); ?>" class="store-action store-delete"
+                                    data-trigger="store-trigger-delete" 
+                                    store-product-id="<?php echo $product->getProductId(); ?>" 
+                                    store-customer-id="<?php echo $product->getCustomerId(); ?>" title="Remove item">
+                                    <span>Remove</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+            <?php else: ?>
+            </ol>
+            <div class="no-store-products">
+                <strong class="subtitle empty">You have no items in your store order.</strong>
+            </div>
+            <?php endif; ?>
+        </div>
+        <?php if($count>0)  : ?>
+        <div class="storeorder-actions">
+            <div class="secondary">
+                <a class="storeorder-action storeorder-viewcart" href="<?php echo $block->getStoreOrderUrl(); ?>">
+                <span data-bind="i18n: 'View Store Order'">View Store Order</span>
+                </a>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+<div id="popup-mpdal" id_product ="" id_customer="">
+    Are you sure you would like to remove this item from the store order?
+</div>
+<style type="text/css">
+    .storeorder-items-wrapper {
+    border: 1px solid #bbbbbb;
+    margin: 0;
+    padding: 0px 20px;
+    display: none;
+    list-style: none none;
+    background: #ffffff;
+    width: 390px;
+    z-index: 101;
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    right: 10px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+
+}
+div#store-dialog button#btn-store-close {
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25px;
+    background-image: none;
+    background: none;
+    -moz-box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    font-weight: 400;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.storeorder-items-wrapper button#btn-store-close:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 14px;
+    color: #757575;
+    content: '\e616';
+    font-family: 'luma-icons';
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+button#btn-store-close >span {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+div#storecart-items-wrapper {
+    margin: 0 -20px;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px 16px;
+    overflow-x: auto;
+}
+
+ol#storeorder-cart {
+    margin: 0;
+    padding: 0;
+    list-style: none none;
+}
+
+li.store-product-item{
+    border-top: 1px solid #cccccc;
+    padding-top: 0;
+}
+
+ol#storeorder-cart li {
+    margin: 0;
+}
+ol#storeorder-cart li:hover {
+    cursor: pointer;
+}
+ol#storeorder-cart li.store-product-item {
+    padding: 20px 0;
+}
+.store-product-image-photo,.store-product-image-container,a.store-product-item-photo {
+    float: left;
+}
+span.store-product-image-wrapper {
+    height: auto;
+    padding: 0 !important;
+}
+img.store-product-image-photo {
+    position: static;
+    height: 100px;
+
+}
+.store-product-item-details {
+    padding-left: 88px;
+}
+
+strong.store-product-item-name {
+    font-weight: 400;
+    margin: 0 0 10px;
+}
+strong.store-product-item-name a {
+    color: #006bb4;
+}
+.store-price-container {
+    display: block;
+    white-space: nowrap;
+    font-size: 1.8rem;
+    margin: 5px 0;
+    line-height: 1;
+}
+input.store-item-qty.store-cart-item-qty {
+    margin-right: 10px;
+    text-align: center;
+    width: 45px;
+}
+
+.store-product.actions {
+    float: right;
+    margin: -24px 0 0;
+}
+
+ .store-primary:not(:last-child), .secondary:not(:last-child) {
+    margin-right: 15px;
+}
+
+.store-primary, .store-secondary {
+    display: inline;
+}
+
+a.store-action.store-edit, a.store-action.store-delete {
+    display: inline-block;
+    text-decoration: none;
+}
+
+a.store-action.store-edit:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    line-height: 20px;
+    color: #757575;
+    content: '\e601';
+    font-family: 'luma-icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+a.store-action.store-edit > span, a.store-action.store-delete > span{
+
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+a.store-action.store-delete:before{
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    line-height: 20px;
+    color: #757575;
+    content: '\e604';
+    font-family: 'luma-icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+span.storeorder-counter-number {
+    background: #ff5501;
+    color: #ffffff;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    display: inline-block;
+    margin: 3px 0 0;
+    min-width: 18px;
+    overflow: hidden;
+    padding: 0 3px;
+    text-align: center;
+    white-space: normal;
+}
+
+.no-store-products {
+    padding: 31px 35px;
+}
+
+ div#popup-mpdal {
+    display: none;
+}
+.store-popup .modal-inner-wrap {
+    max-width: 50rem;
+}
+.store-popup footer.modal-footer {
+    text-align: unset !important;
+    border-top:unset !important;
+}
+.store-popup .modal-content {
+    padding-right: 7rem;
+
+    padding-bottom: unset !important; 
+
+}
+.storeorder-items-total {
+    float: left;
+    margin: 0 10px;
+}
+span.storeorder-count {
+    font-weight: 700;
+}
+
+.storeorder-subtotal {
+    margin: 0 10px 10px;
+    text-align: right;
+}
+
+span.storeorder-price {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.storeorder-qty-price-blk {
+    padding: 20px 0px 0px;
+}
+
+.storeorder-actions {
+    border-top: 1px solid #bbbb;
+    margin-top: 16px;
+    padding-top: 13px;
+    margin-bottom: 20px;
+}
+
+.storeorder-actions .secondary {
+    text-align: center;
+}
+</style>

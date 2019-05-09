@@ -1,0 +1,31 @@
+<?php $product = $block->getProduct(); ?>
+<?php $helper = $this->helper("Tychons\Storeorder\Helper\Data"); ?>
+<?php $buttonTitle = $helper->getConfig('storeorder/general/button_title'); ?>
+<?php if ($product->isSaleable()) : ?>
+    <?php $postParams = $block->getAddToCartPostParams($product); ?>
+    <div class="addtostoreorder-btn">
+        <form action="<?php /* @noEscape */ echo $postParams['action']; ?>"
+              id="product_addtocart_form_<?php /* @noEscape */ echo $postParams['data']['product']; ?>"
+              method="post">
+            <input type="hidden" 
+                   name="product"
+                   value="<?php /* @noEscape */ echo $postParams['data']['product']; ?>">
+            <input type="hidden"
+                   name="<?php /* @noEscape */ echo 'uenc'; ?>"
+                   value="<?php /* @noEscape */ echo $postParams['data']['uenc']; ?>">
+            <?php echo $block->getBlockHtml('formkey')?>
+            <button type="submit"
+                    title="<?php echo $block->escapeHtml(__($buttonTitle)); ?>"
+                    class="action tocart addtostoreorder primary"
+                    data-mage-init='
+                    {
+                        "Tychons/AddToStoreOrder/js/addto-storeorder": {
+                            "form": "#product_addtocart_form_<?php echo $postParams['data']['product']; ?>"
+                        }
+                    }
+                '>
+                <span><?php /* @noEscape */ echo __($buttonTitle) ?></span>
+            </button>
+        </form>
+    </div>
+<?php endif; ?>

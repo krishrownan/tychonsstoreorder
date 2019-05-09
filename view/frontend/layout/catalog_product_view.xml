@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Tychons_Storeorder::css/addtostoreorder.css"/>
+        <link src="Tychons_Storeorder::js/addtostoreorder.js"/>
+    </head>
+    <body>
+        <referenceBlock name="product.info.addtocart">
+            <block class="Tychons\Storeorder\Block\Product\View"
+                   name="product.addtostoreorder"
+                   template="Tychons_Storeorder::order/addtostoreorder-view.phtml"
+                   after="-" ifconfig="addtostoreorder/general/enable_view"/>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart.additional">
+            <block class="Tychons\Storeorder\Block\Product\View"
+                   name="product.addtostoreorder.config"
+                   template="Tychons_Storeorder::order/addtostoreorder-view.phtml"
+                   after="-" ifconfig="addtostoreorder/general/enable_view"/>
+        </referenceBlock>
+        <referenceBlock name="related.product.addto">
+            <block class="Tychons\Storeorder\Block\Product\ListProduct"
+                   ifconfig="addtostoreorder/general/enable_related"
+                   name="product.addtostoreorder.related"
+                   after="-" template="Tychons_Storeorder::order/addtostoreorder-list.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,38 @@
+.catalog-category-view .product-item-inner.addtostoreorder {
+	position: relative;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 5px 1px;
+}
+
+.catalog-category-view button.addtostoreorder {
+    width: 103px;
+}
+
+.catalog-product-view #product-addtocart-button {
+	float: left;
+}
+
+.catalog-product-view #addto-storeorder
+{
+	margin-bottom: 15px;
+	width: 49%;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+    font-size: 1.8rem;
+}
+
+.button.addtostoreorder {
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.catalog-category-view .product.actions.product-item-actions {
+    margin: 0px;
+}
+
+@media(max-width: 767px){
+    .catalog-product-view #addto-storeorder{
+        width: 100%;
+    }
+}

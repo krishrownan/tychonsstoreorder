@@ -1,0 +1,27 @@
+<?php $helper = $this->helper("Tychons\Storeorder\Helper\Data"); ?>
+<?php $addtocartId = $helper->getConfig('storeorder/general/addtocart_id'); ?>
+<?php $buttonTitle = $helper->getConfig('storeorder/general/button_title'); ?>
+<?php $formId = $addtocartId ? $addtocartId : "product_addtocart_form"; ?>
+<?php 
+//get current product details in product page
+
+$myBlock = \Magento\Framework\App\ObjectManager::getInstance()->get('Tychons\Storeorder\Block\Product\View');
+
+$posturl = $this->getPostUrl();
+
+// print current product data
+if ($currentProduct = $myBlock->getCurrentProduct()) {
+	$product_id = $currentProduct->getId();
+    $product_name = $currentProduct->getName();
+    $product_sku = $currentProduct->getSku();
+    $product_price =  $currentProduct->getFinalPrice();
+    $product_url =  $currentProduct->getProductUrl();
+    $product_desc  = $currentProduct->getShortDescription();
+}
+?>
+<div class="addtostoreorder-button">
+    <button type="submit" id="addto-store" title="<?php /* @escapeNotVerified */ echo __($buttonTitle) ?>" class="action primary" 
+    	product_id= "<?php echo $product_id ?>" product_name= "<?php echo $product_name ?>" product_sku= "<?php echo $product_sku ?>" product_price= "<?php echo $product_price ?>" product_url= "<?php echo $product_url ?>" product_url= "<?php echo $product_url ?>" product_desc= "<?php echo $product_desc ?>" url= "<?php echo $posturl ?>">
+        <span><?php /* @escapeNotVerified */ echo __($buttonTitle) ?></span>
+    </button>
+</div>
