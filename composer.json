@@ -1,5 +1,5 @@
 {
-    "name": "tychons/module-storeorder",
+    "name": "krishrownan/tychonsstoreorder",
     "description": "This plugin is used to manage store order at scheduled time",
     "type": "magento2-module",
     "license": "proprietary",
